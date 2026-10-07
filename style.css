@@ -1,6 +1,40 @@
-/* ==============================
-   GENERAL STYLES
-============================== */
+/* =========================================
+   TASK 2 - ADVANCED CSS3 & RESPONSIVE DESIGN
+========================================= */
+
+/* ---------- CSS VARIABLES ---------- */
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e293b;
+    --background-color: #f8fafc;
+    --card-color: #ffffff;
+    --text-color: #1e293b;
+    --light-text: #64748b;
+    --border-color: #cbd5e1;
+    --focus-color: #f59e0b;
+
+    --max-width: 1100px;
+    --spacing: 1rem;
+    --radius: 12px;
+}
+
+
+/* ---------- DARK THEME ---------- */
+
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --background-color: #0f172a;
+        --card-color: #1e293b;
+        --text-color: #f8fafc;
+        --light-text: #cbd5e1;
+        --border-color: #475569;
+    }
+}
+
+
+/* ---------- BASIC RESET ---------- */
 
 * {
     box-sizing: border-box;
@@ -14,19 +48,21 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f5f5f5;
-    color: #222;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+
+/* ---------- CONTAINER ---------- */
+
 .container {
-    width: min(90%, 1100px);
+    width: min(90%, var(--max-width));
     margin: auto;
 }
 
 
-/* ==============================
-   SKIP LINK
-============================== */
+/* ---------- SKIP LINK ---------- */
 
 .skip-link {
     position: absolute;
@@ -46,139 +82,194 @@ body {
 }
 
 
-/* ==============================
+/* =========================================
    HEADER
-============================== */
+========================================= */
 
 header {
-    background-color: #222;
-    color: #fff;
-    padding: 20px 0;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    padding: 1.5rem 0;
 }
 
 header h1 {
-    margin: 0;
+    margin: 0 0 1rem;
 }
 
 
-/* ==============================
-   NAVIGATION
-============================== */
+/* =========================================
+   FLEXBOX NAVIGATION
+========================================= */
 
 nav ul {
     list-style: none;
 
     padding: 0;
-    margin: 15px 0 0;
+    margin: 0;
 
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+
+    gap: 0.5rem;
 }
 
 nav a {
-    color: #fff;
+    display: block;
+
+    color: #ffffff;
     text-decoration: none;
-    padding: 8px;
+
+    padding: 0.6rem 0.8rem;
+
+    border-radius: 6px;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 nav a:hover,
 nav a:focus {
-    text-decoration: underline;
+    background-color: var(--primary-color);
+    transform: translateX(5px);
 }
 
 
-/* ==============================
+/* =========================================
    MAIN CONTENT
-============================== */
+========================================= */
 
 main {
-    padding: 50px 0;
+    padding: 2rem 0;
+
     min-height: 70vh;
 }
 
 section {
-    margin-bottom: 40px;
+    margin-bottom: 3rem;
 }
 
 
-/* ==============================
+/* =========================================
    HERO SECTION
-============================== */
+========================================= */
 
 .hero {
     text-align: center;
-    padding: 60px 20px;
-    background-color: #e9ecef;
+
+    padding: 4rem 1rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-color),
+            #7c3aed
+        );
+
+    color: #ffffff;
+
+    border-radius: var(--radius);
+
+    margin-bottom: 3rem;
 }
 
 .hero h2 {
     font-size: 2rem;
+    margin-top: 0;
 }
 
 
-/* ==============================
+/* =========================================
    BUTTON
-============================== */
+========================================= */
 
 .button,
 button {
     display: inline-block;
 
-    padding: 12px 20px;
+    padding: 0.8rem 1.5rem;
 
     border: none;
+    border-radius: 8px;
 
-    background-color: #222;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: #ffffff;
 
     text-decoration: none;
 
     cursor: pointer;
 
     font-size: 1rem;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .button:hover,
 .button:focus,
 button:hover,
 button:focus {
-    background-color: #444;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 
-/* ==============================
-   PROJECTS
-============================== */
+/* =========================================
+   CSS GRID - PROJECTS
+========================================= */
 
 .projects {
     display: grid;
 
-    grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
 
-    gap: 25px;
+    gap: 1.5rem;
 }
 
 .project-card {
-    background-color: #fff;
+    background-color: var(--card-color);
 
-    padding: 25px;
+    padding: 1.5rem;
 
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+
+    border-radius: var(--radius);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+    margin-top: 0;
+
+    color: var(--primary-color);
 }
 
 
-/* ==============================
+/* =========================================
    CONTACT FORM
-============================== */
+========================================= */
 
 form {
     max-width: 700px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
 label {
@@ -186,20 +277,26 @@ label {
 
     font-weight: bold;
 
-    margin-bottom: 6px;
+    margin-bottom: 0.5rem;
 }
 
 input,
 textarea {
     width: 100%;
 
-    padding: 12px;
+    padding: 0.8rem;
 
-    border: 2px solid #555;
+    border: 2px solid var(--border-color);
+
+    border-radius: 6px;
 
     font-size: 1rem;
 
     font-family: inherit;
+
+    background-color: var(--card-color);
+
+    color: var(--text-color);
 }
 
 textarea {
@@ -207,47 +304,99 @@ textarea {
 }
 
 
-/* ==============================
-   KEYBOARD FOCUS
-============================== */
+/* =========================================
+   KEYBOARD ACCESSIBILITY
+========================================= */
 
 input:focus,
 textarea:focus,
 button:focus,
 a:focus {
-    outline: 3px solid #ffbf47;
-    outline-offset: 2px;
+    outline: 3px solid var(--focus-color);
+
+    outline-offset: 3px;
 }
 
 
-/* ==============================
+/* =========================================
    FOOTER
-============================== */
+========================================= */
 
 footer {
-    background-color: #222;
+    background-color: var(--secondary-color);
 
-    color: #fff;
+    color: #ffffff;
 
-    padding: 25px 0;
+    padding: 2rem 0;
 
     text-align: center;
 }
 
 
-/* ==============================
-   MOBILE RESPONSIVE DESIGN
-============================== */
+/* =========================================
+   TABLET
+========================================= */
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
 
     nav ul {
-        flex-direction: column;
-        gap: 5px;
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        gap: 1rem;
+    }
+
+    nav a:hover,
+    nav a:focus {
+        transform: translateY(-2px);
+    }
+
+    .projects {
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .hero h2 {
-        font-size: 1.6rem;
+        font-size: 2.5rem;
+    }
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 900px) {
+
+    header .container {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 2rem;
     }
 
+    header h1 {
+        margin: 0;
+    }
+
+    nav ul {
+        justify-content: flex-end;
+    }
+
+    .projects {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    main {
+        padding: 4rem 0;
+    }
+
+    .hero {
+        padding: 6rem 2rem;
+    }
 }
